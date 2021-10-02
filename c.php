@@ -11,8 +11,6 @@ $b = explode(' ', $data[2]);
 $totalAmountOfBalls = array_sum($a);
 $totalBoxes = $totalAmountOfBalls;
 
-$freeBalls = [];
-
 for ($i = 0; $i < $k; ++$i) {
     if ($b[$i] != 0) {
         $totalBoxes = min(
@@ -22,12 +20,28 @@ for ($i = 0; $i < $k; ++$i) {
     }
 }
 
+if ($totalBoxes < 1) {
+    echo '0';
+    return;
+}
+
 while ($totalAmountOfBalls / $totalBoxes != (int) ($totalAmountOfBalls / $totalBoxes)) {
     $totalBoxes--;
+
+    if ($totalBoxes < 1) {
+        echo '0';
+        return;
+    }
 }
 
 $ballsInBox = $totalAmountOfBalls / $totalBoxes;
 
+if($ballsInBox<0){
+    echo 0;
+    return;
+}
+
+$freeBalls = [];
 for ($i = 0; $i < $k; ++$i) {
     $freeBalls[$i] = $a[$i] - $b[$i] * $totalBoxes;
 }
@@ -36,7 +50,7 @@ $freeColor = 0;
 
 echo $totalBoxes . ' ' . $ballsInBox . PHP_EOL;
 
-for ($i = 0; $i < $totalBoxes; $i++) {
+for ($box = 0; $box < $totalBoxes; $box++) {
     $needToFeel = $ballsInBox;
 
     for ($color = 0; $color < $k; $color++) {
@@ -49,12 +63,16 @@ for ($i = 0; $i < $totalBoxes; $i++) {
     }
 
     while ($needToFeel > 0) {
-        if ($freeBalls[$freeColor]) {
+        if ($freeBalls[$freeColor] > 0) {
             echo ($freeColor + 1) . ' ';
             $freeBalls[$freeColor]--;
             $needToFeel--;
         } else {
             $freeColor++;
+        }
+
+        if ($freeColor >= $k) {
+            return;
         }
     }
 
