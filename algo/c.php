@@ -4,7 +4,7 @@ $maxTimeOut = 2;
 
 while (true) {
     $start = microtime(true);
-    generateTest();
+    //generateTest();
 
     $inputData = file_get_contents('input.txt');
     $data = explode("\n", $inputData);
@@ -31,6 +31,7 @@ while (true) {
         die();
     }
 
+    echo "totalBoxes before while {$totalBoxes}\n";
     while ($totalAmountOfBalls / $totalBoxes != (int) ($totalAmountOfBalls / $totalBoxes)) {
         $totalBoxes--;
 
@@ -39,6 +40,7 @@ while (true) {
             die();
         }
     }
+    echo "totalBoxes after while {$totalBoxes} \n";
 
     $ballsInBox = $totalAmountOfBalls / $totalBoxes;
 
@@ -105,10 +107,14 @@ while (true) {
         }
 
         echo 'Valid ' . number_format($end - $start, 3) . ' ' . date('H:i:s') . PHP_EOL;
+
+        // echo $result;
     } else {
         echo 'FOUND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!';
         die();
     }
+
+    die();
 }
 
 function validateResult($result)

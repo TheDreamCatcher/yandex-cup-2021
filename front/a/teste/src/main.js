@@ -1,7 +1,8 @@
 // Не забудьте перед отправкой изменить в module.exports = function main(game, start) {
 // Не деструктурируйте game, ваше решение не будет проходить тесты.
-module.exports = function main(game, start) {
-    return async() => {
+export default function main(game, start) {
+//module.exports = function main(game, start) {
+    const maze = async() => {
         const check = [
             start,
         ];
@@ -55,4 +56,8 @@ module.exports = function main(game, start) {
 
         return finish;
     };
-}
+
+    return new Promise((resolve) => {
+        resolve(maze());
+    });
+};

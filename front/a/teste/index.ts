@@ -3,8 +3,8 @@ import { generateLabyrinth } from './src/labyrinth-generator.js';
 import { render } from './src/render.js';
 import main from './src/main.js';
 
-const WIDTH = 10;
-const HEIGHT = 10;
+const WIDTH = 50;
+const HEIGHT = 50;
 
 const start = { x: 0, y: 0 };
 const finish = { x: WIDTH / 2, y: HEIGHT / 2 };
